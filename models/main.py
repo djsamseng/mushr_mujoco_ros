@@ -131,19 +131,22 @@ class HammerEnvV0():
         start_fpv_camera_axisangle = self.quat_to_axisangle(start_fpv_camera_quat)
         np.testing.assert_allclose(self.axisangle_to_quat(start_fpv_camera_axisangle), start_fpv_camera_quat)
 
-        angle = 0
+        # twist, down/up, left/right
+        angle = np.pi/2
+        rot_fpv_camera_axisangle = np.array([0, 0, 1, angle])
+        final_fpv_camera_axisangle = self.apply_two_axisangles(start_fpv_camera_axisangle, rot_fpv_camera_axisangle)
+        final_fpv_camera_quat = self.axisangle_to_quat(final_fpv_camera_axisangle)
+        self.model.cam_quat[fpv_camera_id] = final_fpv_camera_quat
+
+        fpv_camera_xpos = self.sim.data.get_camera_xpos("buddy_first_person")
+        print("fpv_camera_xpos:", fpv_camera_xpos)
+
         while True:
-            angle += 0.01
-            if angle > np.pi * 2:
-                angle = 0
-            # twist, down/up, left/right
-            rot_fpv_camera_axisangle = np.array([0, 0, 1, angle])
-            final_fpv_camera_axisangle = self.apply_two_axisangles(start_fpv_camera_axisangle, rot_fpv_camera_axisangle)
-            final_fpv_camera_quat = self.axisangle_to_quat(final_fpv_camera_axisangle)
-            self.model.cam_quat[fpv_camera_id] = final_fpv_camera_quat
-            #self.sim.data.ctrl[steering_id] = 1
-            #self.sim.data.ctrl[throttle_id] = 1
+
+            self.sim.data.ctrl[steering_id] = 0.3
+            self.sim.data.ctrl[throttle_id] = 1
             #self.model.cam_fovy[fpv_camera_id] +=1
+
 
             sim.step()
 

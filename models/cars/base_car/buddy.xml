@@ -17,7 +17,8 @@
     </default>
   </default>
   <worldbody>
-    <body name="buddy" pos="0.0 2.0 0.0" euler="0 0 0.0">
+    <!-- ===== CAR ===== -->
+    <body name="buddy" pos="0.0 0.0 0.0" euler="0 0 0.0">
       <camera name="buddy_third_person" mode="fixed" pos="-1 0 1" xyaxes="0 -1 0 0.707 0 0.707"/>
       <!-- xyaxes="left/right na na up/down na na" fovy="120zoomedout 45default 20zoomedin" xyaxes="0 -1 0 0.707 0 0.707" axisangle="0.457 -0.357 -0.863 1.718"-->
       <camera name="buddy_first_person" mode="fixed" fovy="120" pos="0.1 0 0.2" xyaxes="0 -1 0 0.707 0 0.707"/>
@@ -58,6 +59,14 @@
         <geom class="buddy_wheel" type="mesh" contype="0" conaffinity="0" group="1" rgba="1 1 1 0.3"/>
       </body>
     </body>
+
+    <!-- ===== BOX ===== -->
+    <body pos="0.0 1 0.049" name="block" euler="0 0 0.000000">
+      <joint type="free"/>
+      <geom type="box" mass="1.2" contype="1" friction="0.4 0.005 0.00001" conaffinity="1" size=".049 .049 .049" rgba="0.247 0.772 0.760 1"/>
+    </body>
+
+
   </worldbody>
   <actuator>
     <position class="buddy_steering" kp="25.0" name="buddy_steering_pos" joint="buddy_steering_wheel"/>
