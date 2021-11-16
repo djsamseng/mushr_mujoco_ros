@@ -8,5 +8,5 @@ $ pip install -r requirements.txt
 
 ```bash
 $ cd models
-$ ./run.sh --viewer
+$ ./run.sh
 ```

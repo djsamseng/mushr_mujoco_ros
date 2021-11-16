@@ -19,6 +19,8 @@
   <worldbody>
     <body name="buddy" pos="0.0 2.0 0.0" euler="0 0 0.0">
       <camera name="buddy_third_person" mode="fixed" pos="-1 0 1" xyaxes="0 -1 0 0.707 0 0.707"/>
+      <!-- xyaxes="left/right na na up/down na na" fovy="120zoomedout 45default 20zoomedin" xyaxes="0 -1 0 0.707 0 0.707" axisangle="0.457 -0.357 -0.863 1.718"-->
+      <camera name="buddy_first_person" mode="fixed" fovy="120" pos="0.1 0 0.2" xyaxes="0 -1 0 0.707 0 0.707"/>
       <joint type="free"/>
 
       <camera name="buddy_realsense_d435i" mode="fixed" pos="-0.005 0 .165" euler="0 4.712 4.712"/>
