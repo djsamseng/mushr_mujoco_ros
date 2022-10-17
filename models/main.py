@@ -155,11 +155,13 @@ class HammerEnvV0():
                 #viewer.cam.azimuth += 0.1
                 viewer.render()
             else:
-                ret = sim.render(width=600, height=400, camera_name="forearm_camera")
+                ret, depth_img = sim.render(width=600, height=400, camera_name="buddy_first_person", depth=True)
                 if self.render:
                     rgb_im = cv2.cvtColor(ret, cv2.COLOR_BGR2RGB)
                     rgb_im = cv2.flip(rgb_im, 0)
                     cv2.imshow("Forearm camera", rgb_im)
+                    print(depth_img)
+                    cv2.imshow("Depth", depth_img)
                     cv2.waitKey()
                     return
 
